@@ -62,15 +62,15 @@ export class MainPageModalComponent implements OnInit {
   }
   async getApiData(){
     await this.bikApiService.getResultsForLocation(this.streetName, this.streetNumber, this.categories.join(',')).subscribe(resp => {
-      this.markers = resp
+      this.data = resp
     });
   }
 
   close() {
-    // console.log(this.markers)
-    // for(let result of this.data.coordinates){
-    //   console.log(result)
-    // }
+    console.log(this.markers)
+    for(let result of this.data.coordinates){
+      console.log(result)
+    }
     this.markers = [ { position: { lat: 38.9987208, lng: -77.2538699 },},{ position: { lat: 38.9987208, lng: -71.2538699 },},{ position: { lat: 38.9987208, lng: -27.2538699 },}]
     this.dialogRef.close(this.markers);
   }
