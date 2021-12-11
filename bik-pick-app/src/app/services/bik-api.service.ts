@@ -20,6 +20,5 @@ export class BikApiService {
 
   getResultsForLocation(streetName: string,streetNumber: string, categories: string):Observable<any>{
     return this.http.get(`https://hackyeah2021.herokuapp.com/scoring/location/personal?streetName=${streetName}&streetNumber=${streetNumber}&radius=100&keywords=${categories}`,  this.httpOptions);
-
   }
 }
