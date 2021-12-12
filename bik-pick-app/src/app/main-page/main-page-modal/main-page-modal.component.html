@@ -8,7 +8,7 @@
       BikPicture - Zacznij z nami!
     </div>
       <div>
-          <app-dialog-card [IconName]="'map'" (click)="setHasLocation(false)">
+          <app-dialog-card [IconName]="'map'" (click)="setHasLocation(false)" [isDisabled]="true">
               <div class="card-title">Szukam lokalizacji</div>
               <div class="card-subtitle">Szukam miejsca aby rozwinąć biznes, inwestować lub po prostu miło żyć w Łodzi...</div>
           </app-dialog-card>
@@ -19,7 +19,7 @@
       </div>
       <div style="display: flex; justify-content: space-between;">
           <button mat-button>Pomiń</button>
-          <button mat-button matStepperNext>Dalej</button>
+          <button mat-button matStepperNext [disabled]="!hasLocation">Dalej</button>
       </div>
   </mat-step>
   <mat-step  >
@@ -93,7 +93,7 @@
       <button mat-button>Pomiń</button>
       <div>
         <button mat-button matStepperPrevious>Wstecz</button>
-        <button mat-button matStepperNext>Dalej</button>
+        <button mat-button matStepperNext [disabled]="!hasLocation">Dalej</button>
       </div>
     </div>
       
@@ -140,10 +140,8 @@
       </div>
     </div>
   </mat-step>
-  <mat-step>
-    <!-- <ng-template matStepLabel>Done</ng-template> -->
-    
-    <div *ngIf="!this.markers">
+  <mat-step>    
+    <div>
       <p>Click Search to initialize gathering Your data</p>
       <button mat-button (click)="getApiData()">Search</button>
     </div>

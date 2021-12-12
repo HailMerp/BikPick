@@ -30,8 +30,8 @@ export class MainPageModalComponent implements OnInit {
   streetName= '';
   streetNumber= '';
   categories : string[] = [];
-  hasLocation: Boolean = false;
-  markers: any;
+  hasLocation: Boolean | undefined;
+  markers :any = [];
   data: any;
 
   constructor(
@@ -67,11 +67,11 @@ export class MainPageModalComponent implements OnInit {
   }
 
   close() {
-    console.log(this.markers)
     for(let result of this.data.coordinates){
-      console.log(result)
+      this.markers.push({ position: { lat:result.latitude, lng: result.longitude },})
     }
-    this.markers = [ { position: { lat: 38.9987208, lng: -77.2538699 },},{ position: { lat: 38.9987208, lng: -71.2538699 },},{ position: { lat: 38.9987208, lng: -27.2538699 },}]
+    console.log(this.markers)
+    // this.markers = [ { position: { lat: 38.9987208, lng: -77.2538699 },},{ position: { lat: 38.9987208, lng: -71.2538699 },},{ position: { lat: 38.9987208, lng: -27.2538699 },}]
     this.dialogRef.close(this.markers);
   }
 }

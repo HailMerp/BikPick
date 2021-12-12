@@ -9,6 +9,8 @@ export class DialogCardComponent implements OnInit {
   
   @Input()
   IconName!: string;
+  @Input()
+  isDisabled: any;
   
   constructor() { }
 
