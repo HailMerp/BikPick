@@ -17,8 +17,7 @@
               <div class="card-subtitle">Mam już lokalizację, powiedz mi co mogę z nią zrobić</div>
           </app-dialog-card>  
       </div>
-      <div style="display: flex; justify-content: space-between;">
-          <button mat-button>Pomiń</button>
+      <div style="display: flex; justify-content: end;">
           <button mat-button matStepperNext [disabled]="!hasLocation">Dalej</button>
       </div>
   </mat-step>
@@ -90,9 +89,8 @@
       </app-dialog-card>  
     </div>
     <div style="display: flex; justify-content: space-between;">
-      <button mat-button>Pomiń</button>
-      <div>
-        <button mat-button matStepperPrevious>Wstecz</button>
+      <button mat-button matStepperPrevious>Wstecz</button>
+      <div>    
         <button mat-button matStepperNext [disabled]="!hasLocation">Dalej</button>
       </div>
     </div>
@@ -133,21 +131,27 @@
     </div>
     <div style="display: flex; justify-content: end;">Możesz maksymalnie wskazać 5 kategorii</div>
     <div style="display: flex; justify-content: space-between;">
-      <button mat-button>Pomiń</button>
+      <button mat-button matStepperPrevious>Wstecz</button>
       <div>
-        <button mat-button matStepperPrevious>Wstecz</button>
         <button mat-button matStepperNext>Dalej</button>
       </div>
     </div>
   </mat-step>
   <mat-step>    
-    <div>
+    <div style="text-align: center;" *ngIf="!this.data">
       <p>Click Search to initialize gathering Your data</p>
       <button mat-button (click)="getApiData()">Search</button>
     </div>
-    <div>
-      <button mat-button (click)="close()">Done</button>
+    <div *ngIf="this.data" style="text-align: center;">
+      <p>Your data is ready!</p>
     </div>
+    <div style="display: flex; justify-content: space-between;">
+      <button mat-button matStepperPrevious>Wstecz</button>
+      <div>
+        <button mat-button (click)="close()" [disabled]="!this.data">Done</button>
+      </div>
+    </div>
+    
   </mat-step>
 </mat-stepper>
 </div>
